@@ -10,15 +10,16 @@
     <script src="scripts/multithread.js"></script>
     <script src="scripts/player.js"></script>
     <script src="scripts/fileSystem/setup.js"></script>
+    <script src="scripts/fileSystem/audio.js"></script>
   </head>
   <body onload="body.ActivateLoad()">
-    <div class='bar' style="float:left; width: 130px; height: 100vh;">
+    <div class='sideBar' style="float:left; width: 130px; height: 100vh;">
       <div class="TypeHeader">
         <h3>Music</h3>
         <span id="music-subCat">
-          <h5>Artist</h5>
-          <h5>Album</h5>
-          <h5>Genre</h5>
+          <h5 onclick="audio.onclick.bar.artist()">Artist</h5>
+          <h5 onclick="audio.onclick.bar.album()">Album</h5>
+          <h5 onclick="audio.onclick.bar.genre()">Genre</h5>
         </span>
       </div>
       <div class="TypeHeader">
@@ -45,7 +46,7 @@
         <img id="pauseIcon" src="icons/pause.svg" style="width: 50px; display: none;">
         <img id="playIcon" src="icons/play.svg" style="width: 35px; padding: 7.5px;">
       </div>
-      <div id="currentlyPlaying" align="left" style="float:left; width: 250px; display: block">
+      <div id="currentlyPlaying" align="left" style="float:left; width: 15vw; display: block">
         <div style="float:left">
           <img id='music-image' style="width: 50px; height: 50px; display: block">
         </div>
@@ -57,13 +58,17 @@
       <input type="range" class='player-seek' id="player-seek" step="0.1" oninput="Seeking(true)" onchange="Seek(this.value)" value="0" max="100"/>
     </div>
     <div id="content">
-      <div id="music">
-        <a onclick="Play('C:/Users/Ajani Bilby/Music/JohnCleese.mp3')">John Cleese</a>
+      <div id="music" class="library">
+        <div id="music-album" style="display:none;"></div>
+        <div id="music-artist" style="display:none;"></div>
+        <div id="music-genre" style="display:none;"></div>
+        <div id="music-song" style="display:none;"></div>
+        <!--<a onclick="Play('C:/Users/Ajani Bilby/Music/JohnCleese.mp3')">John Cleese</a>-->
       </div>
       <div id="video"></div>
       <div id="soundcloud"></div>
       <div id="stream">
-        <a onclick="Play('http://icecast.djazz.se:8000/radio')">John Cleese</a>
+        <!-- <a onclick="Play('http://icecast.djazz.se:8000/radio')">John Cleese</a> -->
       </div>
       <div id="test1" class="scrolling" style="width:300px">
         <h3>Scrolling text... </h3>

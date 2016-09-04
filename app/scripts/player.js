@@ -12,7 +12,7 @@ body.onLoad = function(){
 };
 
 function Play(file){
-  if (player.output.paused){
+  if (player.output.paused || file){
     if (file){
       player.output.innerHTML = "";
 			var source = document.createElement("source");
@@ -20,7 +20,7 @@ function Play(file){
 			source.src = file;
 			player.output.appendChild(source);
       player.output.currentTime = 0;
-      GetMusicMeta(file, function(metadata){
+      GetSongMeta(file, function(metadata){
         console.log(metadata);
         document.getElementById('music-title').innerHTML = metadata.title;
         document.getElementById('music-artist').innerHTML = metadata.artist.join(', ');

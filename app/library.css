@@ -38,7 +38,7 @@ h5{
   color: rgb(200, 200, 200)
 }
 
-.bar{
+.sideBar{
   padding: 5px;
   background-color: rgb(80, 80, 80);
 }
@@ -67,8 +67,56 @@ h5{
 
 .player-seek{
   margin-top: 15px;
-  width: calc(100% - 350px);
+  width: calc(85vw - 80px);
   height: 20px;
+}
+
+.library{
+  overflow: auto;
+  height: calc(100vh - 50px);
+}
+
+.itemCase{
+  padding-top: 5px;
+  width: 130px;
+  height: 150px;
+  margin: 5px;
+  text-align:center;
+  vertical-align: middle;
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 0.05);
+  transition: background-color 0.1s;
+  border-radius: 1px;
+}
+
+.itemCase:hover{
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.tabHeadder{
+  width: calc(100vw - 183px);
+  margin: 5px;
+  padding-left:15px;
+  padding-top:2px;
+  display: block;
+  background-color: rgba(255, 255, 255, 0.4);
+  height: 30px;
+  font-size:20px;
+  vertical-align:middle;
+  font-family:Montserrat;
+  color: white;
+}
+
+.scanProcess{
+  z-index: 1000;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  width: 300px;
+  height: 70px;
+  background-color: rgba(126, 126, 126, 1);
+  border-radius: 5px;
+  transition: background-color 2s;
 }
 
 
