@@ -1,0 +1,119 @@
+body{
+  margin: 0;
+  background-color: rgb(60, 60, 60);
+  overflow: hidden;
+}
+
+p{
+  color: white;
+}
+
+h1{
+  font-family: Montserrat;
+  margin: 10px 0px 10px 0px;
+  color: white;
+}
+
+h2{
+  font-family: Montserrat-Light;
+  margin: 10px 0px 10px 0px;
+  color: rgb(230, 230, 230);
+}
+
+h3{
+  font-family: Montserrat-UltraLight;
+  margin: 10px 0px 10px 0px;
+  color: rgb(220, 220, 220);
+}
+
+h4{
+  font-family: Montserrat-Hairline;
+  margin: 5px 0px 5px 0px;
+  color: rgb(210, 210, 210);
+}
+
+h5{
+  font-family: Montserrat-Hairline;
+  margin: 5px 0px 5px 0px;
+  color: rgb(200, 200, 200)
+}
+
+.bar{
+  padding: 5px;
+  background-color: rgb(80, 80, 80);
+}
+
+.TypeHeader{
+  overflow: hidden;
+  height: 42px;
+  width: 130px;
+  -webkit-transition: height 0.4s ease-in-out;
+  transition: height 0.4s ease-in-out;
+}
+
+.TypeHeader:hover{
+  height: calc(100vh - 177px);
+}
+
+.player{
+  background-color: rgb(65, 65, 65);
+  height: 50px;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: 10;
+}
+
+.player-seek{
+  margin-top: 15px;
+  width: calc(100% - 350px);
+  height: 20px;
+}
+
+
+
+
+
+.scrolling {
+ height: 50px;
+ overflow: hidden;
+ position: relative;
+}
+.scrolling * {
+ position: absolute;
+ width: 100%;
+ height: 100%;
+ margin: 0;
+ line-height: 50px;
+ text-align: center;
+ /* Starting position */
+ -moz-transform:translateX(100%);
+ -webkit-transform:translateX(100%);
+ transform:translateX(100%);
+ /* Apply animation to this element */
+ -moz-animation: scrolling 15s linear infinite;
+ -webkit-animation: scrolling 15s linear infinite;
+ animation: scrolling 15s linear infinite;
+}
+/* Move it (define the animation) */
+@-moz-keyframes scrolling {
+ 0%   { -moz-transform: translateX(100%); }
+ 100% { -moz-transform: translateX(-100%); }
+}
+@-webkit-keyframes scrolling {
+ 0%   { -webkit-transform: translateX(100%); }
+ 100% { -webkit-transform: translateX(-100%); }
+}
+@keyframes scrolling {
+ 0%   {
+ -moz-transform: translateX(100%); /* Firefox bug fix */
+ -webkit-transform: translateX(100%); /* Firefox bug fix */
+ transform: translateX(100%);
+ }
+ 100% {
+ -moz-transform: translateX(-100%); /* Firefox bug fix */
+ -webkit-transform: translateX(-100%); /* Firefox bug fix */
+ transform: translateX(-100%);
+ }
+}

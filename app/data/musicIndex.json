@@ -1,0 +1,10 @@
+{
+  "sorted": {
+    "album": {},
+    "artist": {},
+    "genre": {},
+    "title": {}
+  },
+  "files": [],
+  "supportedFiles": ["mp3"]
+}

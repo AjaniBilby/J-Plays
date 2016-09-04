@@ -1,0 +1,49 @@
+var fs = require('fs');
+var mm = require('musicmetadata');
+
+var userHome = process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'];
+
+function GetFileData(path, callback){
+  if (typeof(callback) == 'function'){
+    fs.stat(path, function(err, stats){
+      if (err){
+        console.error(err);
+      }else{
+        callback(stats);
+      }
+    });
+  }
+}
+
+function IndexDir(dir, recursive = true){
+  var results = [];
+  var data = fs.readdirSync(dir);
+  for (let item of data){
+    if (recursive){
+      try{
+        var states = fs.statSync(dir+"/"+item);
+        if (states.isDirectory()){
+          var folderIndex = IndexDir(dir+'/'+item);
+          for (let subItem of folderIndex){
+            results.push(item+'/'+subItem);
+          }
+        }else{
+          results.push(item);
+        }
+      }catch (err2){
+        console.error(err2);
+        results.push(item);
+      }
+    }else{
+      results.push(item);
+    }
+  }
+  return results;
+}
+
+function StatTest(){
+  var startTime = Date.now();
+  GetFileData('C:/Users/Ajani Bilby/music/DaftPunk/Tron Legacy/tron_legacy_-_soundtrack_ost_-_02_th-tFXYuw96d0c_fmt135.mp3', function(stats){
+    console.log(Date.now()-startTime);
+  });
+}

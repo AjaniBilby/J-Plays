@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="scripts/body.js"></script>
+    <meta charset="utf-8">
+    <title>Library</title>
+    <link rel="stylesheet" href="fonts/Montserrat.css">
+    <link rel="stylesheet" type="text/css" href="library.css"></link>
+    <script src="scripts/process.js"></script>
+    <script src="scripts/multithread.js"></script>
+    <script src="scripts/player.js"></script>
+    <script src="scripts/fileSystem/setup.js"></script>
+  </head>
+  <body onload="body.ActivateLoad()">
+    <div class='bar' style="float:left; width: 130px; height: 100vh;">
+      <div class="TypeHeader">
+        <h3>Music</h3>
+        <span id="music-subCat">
+          <h5>Artist</h5>
+          <h5>Album</h5>
+          <h5>Genre</h5>
+        </span>
+      </div>
+      <div class="TypeHeader">
+        <h3>Video</h3>
+        <span id="video-subCat">
+        </span>
+      </div>
+      <div class="TypeHeader">
+        <h3>SoundCloud</h3>
+        <span id="soundCloud-subCat">
+          <h5>Artist</h5>
+          <h5>Album</h5>
+          <h5>Genre</h5>
+        </span>
+      </div>
+      <div class="TypeHeader">
+        <h3>Stream</h3>
+      </div>
+    </div>
+    <div id="player-div" align="center" class="player">
+      <video id="player" style="width: 100%; display: none;">
+      </video>
+      <div class="mediaButton" id="playButton" style="float:left; display: block;" onclick="Play()">
+        <img id="pauseIcon" src="icons/pause.svg" style="width: 50px; display: none;">
+        <img id="playIcon" src="icons/play.svg" style="width: 35px; padding: 7.5px;">
+      </div>
+      <div id="currentlyPlaying" align="left" style="float:left; width: 250px; display: block">
+        <div style="float:left">
+          <img id='music-image' style="width: 50px; height: 50px; display: block">
+        </div>
+        <div style="padding-left: 60px; display: block">
+          <h4 nowrap><span id='music-title'>Title</span></h4>
+          <h5 nowrap><span id='music-artist'>Artist</span></h5>
+        </div>
+      </div>
+      <input type="range" class='player-seek' id="player-seek" step="0.1" oninput="Seeking(true)" onchange="Seek(this.value)" value="0" max="100"/>
+    </div>
+    <div id="content">
+      <div id="music">
+        <a onclick="Play('C:/Users/Ajani Bilby/Music/JohnCleese.mp3')">John Cleese</a>
+      </div>
+      <div id="video"></div>
+      <div id="soundcloud"></div>
+      <div id="stream">
+        <a onclick="Play('http://icecast.djazz.se:8000/radio')">John Cleese</a>
+      </div>
+      <div id="test1" class="scrolling" style="width:300px">
+        <h3>Scrolling text... </h3>
+      </div>
+    </div>
+  </body>
+  <script src="scripts/fileSystem/audio.js"></script>
+</html>
