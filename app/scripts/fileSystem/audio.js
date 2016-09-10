@@ -196,12 +196,12 @@ var songIndex = {
 
 AudioLoadIndex();
 
-var audioTemp = IndexDir(userHome+'/music/');
+var audioTemp = IndexDir(mediaDirs.music);
 
 for (let file of audioTemp){
   var extention = file.split('.');
   extention = extention[extention.length-1];
-  file = userHome+'/music/'+file;
+  file = mediaDirs.music+file;
 
   if (songIndex.supportedFiles.indexOf(extention) != -1){
     if (songIndex.files.indexOf(file) == -1){
@@ -291,7 +291,7 @@ var audio = {
     },
     song: function(songId){
       var html = '';
-      html += '<div class="songItem" id="'+ (songId-1) +'-song" onclick="audio.onclick.item.song(this, event)" oncontextmenu="console.log(event)">';
+      html += '<div class="songItem" id="'+ (songId-1) +'-song" onclick="audio.onclick.item.song(this, event)" oncontextmenu="audio.onclick.item.song(this, event)">';
       html += '<div class="track">'+ (audio.getItemOfSong.track(songId) || '-') +'</div>';
       html += '<div class="title">'+audio.getItemOfSong.title(songId)+'</div>';
       html += '<div style="float: left">'+audio.getItemOfSong.artist(songId)+'</div>';
@@ -350,18 +350,35 @@ var audio = {
     },
     songs: function(songIds, title, sortBy = 'track'){
       songIds.sort(function(a, b){
+        var valueA = 0;
+        var valueB = 0;
         switch (sortBy) {
           case 'artist':
-            return audio.getItemOfSong.artist(a) - audio.getItemOfSong.artist(b);
+            valueA = audio.getItemOfSong.artist(a);
+            valueB = audio.getItemOfSong.artist(b);
+            break;
           case 'album':
-            return audio.getItemOfSong.album(a) - audio.getItemOfSong.album(b);
+            valueA = audio.getItemOfSong.album(a);
+            valueB = audio.getItemOfSong.album(b);
+            break;
           case 'track':
-            return (Number(audio.getItemOfSong.track(a)) || 0) > (Number(audio.getItemOfSong.track(b)) || 0);
+            valueA = Number(audio.getItemOfSong.track(a)) || 0;
+            valueB = Number(audio.getItemOfSong.track(b)) || 0;
+            break;
           case 'genre':
             return;
           default:
-            return audio.getItemOfSong.title(a) - audio.getItemOfSong.title(b);
+            valueA = audio.getItemOfSong.title(a);
+            valueB = audio.getItemOfSong.title(b);
         }
+
+        if (valueA < valueB){
+          return -1;
+        }
+        if (valueA > valueB){
+          return 1;
+        }
+        return 0;
       });
 
 
@@ -424,16 +441,19 @@ var audio = {
         audio.fill.songs(songIndex.sorted.genre[genre], genre, 'track');
       },
       song: function(element, event){
-        console.log(event);
+        var songId;
+        console.log((event.button === 2));
         if (event.button === 0){
-          var songId = element.id.substr(0, element.id.length-5);
-          console.log(songId);
-          Play(songIndex.files[songId]);
+          songId = element.id.substr(0, element.id.length-5);
+          player.list = [songIndex.files[songId]];
+          Play(player.list[0]);
+          player.currentlyPlaying = 0;
         }else if (event.button === 2){
           //Right click
-          var songId = element.id.substr(0, element.id.length-5);
+          songId = element.id.substr(0, element.id.length-5);
           console.log(songId);
           player.list.push(songIndex.files[songId]);
+          console.log(player.list);
         }
       }
     }

@@ -3,6 +3,21 @@ var mm = require('musicmetadata');
 
 var userHome = process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'];
 
+var mediaDirs = {
+  music: userHome+'/music/',
+  videos: userHome+'/videos/'
+};
+
+var loadData = JSON.parse(fs.readFileSync('./data/folderDir.json', 'utf8'));
+
+if (loadData.music){
+  mediaDirs.music = loadData.music.replace('%userHome%', userHome);
+}
+if (loadData.videos){
+  mediaDirs.videos = loadData.videos.replace('%userHome%', userHome);
+}
+delete loadData;
+
 function GetFileData(path, callback){
   if (typeof(callback) == 'function'){
     fs.stat(path, function(err, stats){
