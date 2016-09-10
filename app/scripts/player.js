@@ -2,7 +2,11 @@ var player = {
   output: null,
   seek: null,
   play: null,
-  loop: null
+  loop: null,
+  list: [],
+  currentlyPlaying: 0,
+  looping: false,
+  shuffle: false
 };
 
 body.onLoad = function(){
@@ -12,6 +16,11 @@ body.onLoad = function(){
 };
 
 function Play(file){
+  if (typeof(file) == 'number'){
+    file = songIndex.files[file];
+  }
+  console.log(file);
+
   if (player.output.paused || file){
     if (file){
       player.output.innerHTML = "";
@@ -47,6 +56,17 @@ function Play(file){
   }
 }
 
+function FileEnd(){
+  console.log('file end');
+  player.currentlyPlaying += 1;
+
+  if (player.currentlyPlaying >= player.list){
+    player.currentlyPlaying = 0;
+  }
+
+  Play(player.list[player.currentlyPlaying]);
+}
+
 function Seeking(start){
   player.seek['data-searching'] = start;
 }
@@ -64,6 +84,13 @@ function PlayerUpdate(){
       player.seek.value = percent*100;
     }
   }
+
+  if (player.output){
+    if (!player.output.paused && player.output.currentTime == player.output.duration){
+      FileEnd();
+    }
+  }
+
   window.requestAnimationFrame(PlayerUpdate);
 }
 

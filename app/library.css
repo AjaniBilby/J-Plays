@@ -39,20 +39,37 @@ h5{
 }
 
 .sideBar{
-  padding: 5px;
   background-color: rgb(80, 80, 80);
+  float:left;
+  width: 100vw;
+  height: 40px;
+  vertical-align: middle;
+  z-index: 10;
+  -webkit-user-select: none;
 }
 
 .TypeHeader{
+  -webkit-app-region: no-drag;
+  padding: 5px;
+  padding-top: 0px;
+  z-index: 11;
   overflow: hidden;
-  height: 42px;
-  width: 130px;
+  display: block;
+  float: left;
+  height: 30px;
+  width: 100px;
+  background-color: rgb(80, 80, 80);
   -webkit-transition: height 0.4s ease-in-out;
   transition: height 0.4s ease-in-out;
 }
 
 .TypeHeader:hover{
-  height: calc(100vh - 177px);
+  height: 100px;
+  z-index: 11;
+}
+
+.TypeHeader h5{
+  cursor: pointer;
 }
 
 .player{
@@ -73,10 +90,14 @@ h5{
 
 .library{
   overflow: auto;
-  height: calc(100vh - 50px);
+  margin-left: 10px;
+  padding-top: 10px;
+  height: calc(100vh - 90px);
+  width: calc(100vw - 10px);
 }
 
 .itemCase{
+  cursor: pointer;
   padding-top: 5px;
   width: 130px;
   height: 150px;
@@ -94,10 +115,11 @@ h5{
 }
 
 .tabHeadder{
-  width: calc(100vw - 183px);
+  width: calc(100vw - 60px);
   margin: 5px;
   padding-left:15px;
   padding-top:2px;
+  margin-left: -10px;
   display: block;
   background-color: rgba(255, 255, 255, 0.4);
   height: 30px;
@@ -119,6 +141,32 @@ h5{
   transition: background-color 2s;
 }
 
+.songItem {
+  color: rgb(250, 250, 250);
+  font-family: Montserrat;
+  padding: 5px;
+  cursor: pointer;
+  width: calc(100vw - 30px);
+  height: 20px;
+  vertical-align: middle;
+  overflow: hidden;
+  background-color: transparent;
+  transition: background-color 0.4s;
+}
+
+.songItem:hover{
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.songItem .title{
+  width: calc(72vw - 100px);
+  float: left
+}
+
+.songItem .track{
+  width: 50px;
+  float: left;
+}
 
 
 

@@ -3,7 +3,7 @@ const client = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 const dialog = electron.dialog;
 const globalShortcut = electron.globalShortcut;
-const ipcMain = electron.ipcMain;
+const ipc = electron.ipcMain;
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -19,7 +19,8 @@ let template = [{
 function createWindow () {
 
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 800, height: 600, frame: true});
+  mainWindow = new BrowserWindow({width: 800, height: 600, frame: false});
+  mainWindow.isMaximised = false;
 
   // and load the index.html of the client.
   mainWindow.loadURL(`file://${__dirname}/app/library.html`);
@@ -59,4 +60,26 @@ client.on('activate', function () {
   if (mainWindow === null) {
     createWindow();
   } // hello
+});
+
+
+ipc.on('minimize', function (event, arg) {
+  console.log('minimize');
+  mainWindow.minimize();
+});
+
+ipc.on('maximize', function (event, arg) {
+  console.log('maximize');
+  if (mainWindow.isMaximised){
+    mainWindow.restore();
+    mainWindow.isMaximised = false;
+  }else{
+    mainWindow.maximize();
+    mainWindow.isMaximised = true;
+  }
+});
+
+ipc.on('close', function (event, arg) {
+  console.log('close');
+  client.quit();
 });
