@@ -4,7 +4,9 @@
   "description": "Javascript Media Player",
   "main": "index.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -21,6 +23,8 @@
     "electron-packager": "^7.0.2",
     "electron-prebuilt": "^1.1.1",
     "fs": "0.0.1-security",
-    "musicmetadata": "^2.0.4"
-  }
+    "musicmetadata": "^2.0.4",
+    "snyk": "^1.88.1"
+  },
+  "snyk": true
 }
