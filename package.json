@@ -18,7 +18,7 @@
   "author": "Ajani James Bilby",
   "license": "ISC",
   "dependencies": {
-    "electron-packager": "^7.0.2",
+    "electron-packager": "^13.0.0",
     "electron-prebuilt": "^1.1.1",
     "fs": "0.0.1-security",
     "musicmetadata": "^2.0.4"
